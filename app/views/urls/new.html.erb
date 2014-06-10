@@ -1,7 +1,8 @@
 <h1>Enter a URL to shorten:</h1> </br> 
 
 <form action="/urls" method="post">
-	<input type="text" name="url[link]>
+	<input type="text" name="url[link]">
+
     <%= token_tag form_authenticity_token %>
 
     <button> Shorten URL </button>

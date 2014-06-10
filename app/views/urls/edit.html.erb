@@ -1,0 +1,10 @@
+<form action="/urls" method="post"> 
+	<input name="_method" type="hidden" value="put"> 
+	<input type="text" name="url[link]" value="<%= @url.link %>"> 
+	<input type="text" name="url[random_string]" value="<%= @url.random_string %>">
+
+	<%= token_tag form_authenticity_token %>
+
+	<button> Update link </button> 
+
+</form> 
