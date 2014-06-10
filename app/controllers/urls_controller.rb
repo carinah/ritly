@@ -13,7 +13,7 @@ class UrlsController < ApplicationController
   end 
 
   def index 
-    urls = Url.all 
+    @urls = Url.all 
   end 
 
   def show 
@@ -30,14 +30,22 @@ class UrlsController < ApplicationController
     url_id = params[:id]
     @url = Url.find(url_id) 
 
-    updated_url = params.require[:url].permit[:link, :random_string] 
-    Url.updated_attribtues(updated_url)
+    updated_url = params.require(:url).permit(:link, :random_string) 
+    @url.update_attributes(updated_url)
 
-    redirect_to url_path(url_id)  
+    redirect_to "/urls/#{url_id}"
   end 
 
   def index 
-    #urls = Url.all 
+    @urls = Url.all
   end 
+
+  def random_string 
+    random_string = params[:random_string]
+    @link = Url.find(random_string)
+    redirect_to @link 
+  end 
+
+
 
 end

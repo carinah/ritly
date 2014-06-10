@@ -1,4 +1,4 @@
-<form action="/urls" method="post"> 
+<form action="/urls/<%= @url.id %>" method="post"> 
 	<input name="_method" type="hidden" value="put"> 
 	<input type="text" name="url[link]" value="<%= @url.link %>"> 
 	<input type="text" name="url[random_string]" value="<%= @url.random_string %>">

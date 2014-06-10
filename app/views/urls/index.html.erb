@@ -1,4 +1,8 @@
 <h1>All urls</h1>
 
-Link: <%= %> </br> 
-Random code: <%= %> 
+<% @urls.each do |url| %>
+    <li>
+      <%= url.link %>
+      <%= url.random_string %>
+    </li>
+<% end %>

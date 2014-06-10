@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: "urls#new"
 
-  get "/urls", to: "urls#new", as: "urls" 
+  get "/urls", to: "urls#index", as: "urls" 
+
+  get "/urls/new", to: "urls#new", as: "url_new" 
 
   post "/urls", to: "urls#create"
 
@@ -11,7 +13,9 @@ Rails.application.routes.draw do
 
   put "/urls/:id", to: "urls#update"
 
-  get "/urls/all", to: "urls#index", as: "index"  
+  get "go/:random_string", to: "urls#random_string"
+
+  #get "go/:random_string/preview", to: "preview" 
 end 
 
 # Rails convention: Model is always singular, table is always plural 
