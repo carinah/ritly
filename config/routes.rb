@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
   get "/go/:random_string", to: "urls#random_string"
 
-  get "/404", to: "urls#not_found"
-
-  #get "/go/:random_string/preview", to: "preview" 
+  get "/go/:random_string/preview", to: "urls#preview" 
 end 
 
 # Rails convention: Model is always singular, table is always plural 
