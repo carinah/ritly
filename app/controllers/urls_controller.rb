@@ -41,9 +41,14 @@ class UrlsController < ApplicationController
   end 
 
   def random_string 
-    random_string = params[:random_string]
-    @link = Url.find(random_string)
-    redirect_to @link 
+    random_string = params[:random_string] 
+
+    if Url.find_url(random_string)
+      Url.find_url(random_string).link 
+    else 
+      render file: "/Users/carinaho/Development/ritly/public/404.html"
+    end
+
   end 
 
 

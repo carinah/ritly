@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
   put "/urls/:id", to: "urls#update"
 
-  get "go/:random_string", to: "urls#random_string"
+  get "/go/:random_string", to: "urls#random_string"
 
-  #get "go/:random_string/preview", to: "preview" 
+  get "/404", to: "urls#not_found"
+
+  #get "/go/:random_string/preview", to: "preview" 
 end 
 
 # Rails convention: Model is always singular, table is always plural 
