@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get "/go/:random_string/preview", to: "urls#preview" 
 
-  get "/go/:my_string", to: "urls#my_string"
+  get "/:my_string", to: "urls#my_string"
 end 
 
 # Rails convention: Model is always singular, table is always plural 

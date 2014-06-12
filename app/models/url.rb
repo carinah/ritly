@@ -23,6 +23,17 @@ class Url < ActiveRecord::Base
       @url = find_by(my_string: [my_string]) 
       Url.increment_counter(:count, @url.id) 
     end 
+
+
+  def self.parse(url)
+    doc = Nokogiri::HTML(open(url))
+    page_info = {}
+    page_info[:link] = doc.css('title').text
+    return page_info
+  end
+end
+
+    # How can you find_by more than 1 attribute? Url.find_or_create_by_random_string_and_my_string(random, my)? 
    
 
      before_validation :ensure_url_has_http 

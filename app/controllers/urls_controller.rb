@@ -43,7 +43,6 @@ class UrlsController < ApplicationController
 
   def random_string 
     random_string = params[:random_string] 
- 
     matching_url = Url.find_url(random_string)
 
     if matching_url 
@@ -67,14 +66,17 @@ class UrlsController < ApplicationController
     end 
   end 
 
-  def preview 
-    random_string = params[:random_string]
-    @url = Url.find_url(random_string).link 
+  def preview
+    url = params[:url]
+    preview = Url.parse(url) # returns a Hash
+    respond_to do |format|
+        format.json { render :json => preview }
+    end
+  end
 
+  # Things to do: 
+  # Preview page 
+  # Bootstrap 
+  # Regular expressions 
     
-  end 
-
-
-
-
 end
