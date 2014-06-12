@@ -4,7 +4,7 @@ class UrlsController < ApplicationController
   end 
 
   def create
-    url = params[:url].permit(:link, :random_string)
+    url = params[:url].permit(:link, :random_string, :my_string)
 
     new_url = Url.create(url)
     new_url.random_string = SecureRandom.urlsafe_base64(5, true)
@@ -19,6 +19,7 @@ class UrlsController < ApplicationController
   def show 
     url = params[:id]
     @new_url = Url.find(url)
+    @count = @new_url.count 
   end 
 
   def edit 
@@ -30,7 +31,7 @@ class UrlsController < ApplicationController
     url_id = params[:id]
     @url = Url.find(url_id) 
 
-    updated_url = params.require(:url).permit(:link, :random_string) 
+    updated_url = params.require(:url).permit(:link, :random_string, :my_string) 
     @url.update_attributes(updated_url)
 
     redirect_to "/urls/#{url_id}"
@@ -46,6 +47,7 @@ class UrlsController < ApplicationController
     matching_url = Url.find_url(random_string)
 
     if matching_url 
+      Url.redirect_counter(random_string)
       redirect_to matching_url.link 
     else 
       render file: "/Users/carinaho/Development/ritly/public/404.html"
@@ -53,9 +55,23 @@ class UrlsController < ApplicationController
 
   end 
 
+  def my_string 
+    my_string = params[:my_string]
+    matching_url = Url.find_url_by_my_string(my_string)
+
+    if matching_url 
+      Url.redirect_counter_my_string(my_string)
+      redirect_to matching_url.link
+    else 
+      render file: "/Users/carinaho/Development/ritly/public/404.html"
+    end 
+  end 
+
   def preview 
     random_string = params[:random_string]
     @url = Url.find_url(random_string).link 
+
+    
   end 
 
 

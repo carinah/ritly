@@ -1,9 +1,10 @@
-<h1>Enter a URL to shorten:</h1> </br> 
+<h1>Enter a URL to shorten and give it a custom nickname:</h1> </br> 
 
 <form action="/urls" method="post">
-	<input type="text" name="url[link]">
+	<p>Enter the link:</p><input type="text" name="url[link]"></br>
+	<p>Give it a nickname:</p><input type="text" name="url[my_string]"></br></br>
 
     <%= token_tag form_authenticity_token %>
 
-    <button> Shorten URL </button>
+    <button> Generate random code </button>
 </form>

@@ -10,14 +10,34 @@ class Url < ActiveRecord::Base
     # Use self when defining a class method. 
   end 
 
+  def self.find_url_by_my_string(my_string)
+    find_by(my_string: [my_string])
+  end 
+
+   def self.redirect_counter(random_string)
+      @url = find_by(random_string: [random_string]) 
+      Url.increment_counter(:count, @url.id) 
+    end 
+
+    def self.redirect_counter_my_string(my_string)
+      @url = find_by(my_string: [my_string]) 
+      Url.increment_counter(:count, @url.id) 
+    end 
+   
+
      before_validation :ensure_url_has_http 
 protected
+  # this is a callback 
    def ensure_url_has_http 
       unless link.start_with?("http://", "https://")
         self.link = "http://" + self.link
         # self.link is the link itself as a variable 
       end 
     end 
+
+
+
+
 
 
 end
