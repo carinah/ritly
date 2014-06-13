@@ -16,6 +16,14 @@ ActiveRecord::Schema.define(version: 20140612162415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "todos", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "done",        default: false
+  end
+
   create_table "urls", force: true do |t|
     t.string   "link"
     t.string   "random_string"

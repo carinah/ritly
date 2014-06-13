@@ -42,29 +42,33 @@ class UrlsController < ApplicationController
   end 
 
   def random_string 
-    random_string = params[:random_string] 
-    matching_url = Url.find_url(random_string)
 
-    if matching_url 
+    matching_url = {}
+
+    if params[:random_string]
+      matching_url = Url.find_url(params[:random_string])
+      Url.redirect_counter(random_string)
+      redirect_to matching_url.link 
+    elsif
+      matching_url = Url.find_url(params[:my_string])
       Url.redirect_counter(random_string)
       redirect_to matching_url.link 
     else 
       render file: "/Users/carinaho/Development/ritly/public/404.html"
-    end
-
-  end 
-
-  def my_string 
-    my_string = params[:my_string]
-    matching_url = Url.find_url_by_my_string(my_string)
-
-    if matching_url 
-      Url.redirect_counter_my_string(my_string)
-      redirect_to matching_url.link
-    else 
-      render file: "/Users/carinaho/Development/ritly/public/404.html"
     end 
+    # random_string = params[:random_string] 
+    # matching_url = Url.find_url(random_string)
+
+    # if matching_url 
+    #   Url.redirect_counter(random_string)
+    #   redirect_to matching_url.link 
+    # else 
+      
+    # end
+
   end 
+
+
 
   def preview
     url = params[:url]
