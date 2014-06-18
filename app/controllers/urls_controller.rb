@@ -20,6 +20,9 @@ class UrlsController < ApplicationController
     url = params[:id]
     @new_url = Url.find(url)
     @count = @new_url.count 
+
+    # For showing timestamps of each visit. 
+    @visits = @new_url.visits
   end 
 
   def edit 
@@ -60,25 +63,15 @@ class UrlsController < ApplicationController
     matching_url = Url.find_url(random_string)
 
     if matching_url 
-       Url.redirect_counter(random_string)
+      # matching_url.build_visit ?? Returns undefined method 
+      matching_url.visits.create
+  
+       # Url.redirect_counter(random_string)
        redirect_to matching_url.link 
      else 
       
      end
 
   end 
-
-
-  def preview
-    url = params[:url]
-    preview = Url.parse(url) # returns a Hash
-    respond_to do |format|
-        format.json { render :json => preview }
-    end
-  end
-
-  # Things to do: 
-  # Get go/:my_string OR :random_string working  
-  # Regular expression validation 
     
 end

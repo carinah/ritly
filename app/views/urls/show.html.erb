@@ -4,6 +4,13 @@ Your random code is: <%= @new_url.random_string %> </br>
 
 Redirect counter: <%= @count %> </br> 
 
+Date/times of visits: 
+<% @visits.each do |visit| %>
+<%= visit.created_at %> 
+<% end %></br>
+
+
+
 <%= link_to "Shorten another URL", url_new_path %> </br> 
 
 <%= link_to "See all URLs", urls_path %> 
