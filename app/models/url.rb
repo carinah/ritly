@@ -1,11 +1,16 @@
 class Url < ActiveRecord::Base
+  has_many :visits
+
    validates :link, presence: true
    validates :random_string, presence: true, length: { minimum: 6, maximum: 10 }
+   validates_uniqueness_of :random_string
 
 
 
-   def self.find_url(random_string_or_my_string)
-    where("my_string = ?" OR "random_string = ?", random_string_or_my_string).find
+   def self.find_url(random_string)
+    @url = find_by(random_string: [random_string])
+    Url.find(@url.id)
+    # where("my_string = ?" OR "random_string = ?", random_string_or_my_string).find
     # self declares that the method will be performed on the entire table, not a single row. 
     # Use self when defining a class method. 
   end 
@@ -29,10 +34,5 @@ protected
         # self.link is the link itself as a variable 
       end 
     end 
-
-
-
-
-
 
 end

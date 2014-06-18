@@ -2,10 +2,10 @@
 
 <% @urls.each do |url| %>
     <li>
-      <%= url.link %>
-      <%= url.random_string %>
-      <%= url.my_string %> 
+      Link: <%= url.link %></br>
+      Shortened url: <%= url.random_string %></br>
+      Link nickname: <%= url.my_string %> </br>
     </li>
 
-    <button class="btn btn-warning">Update</button>
+    
 <% end %>

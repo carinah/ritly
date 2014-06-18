@@ -43,31 +43,30 @@ class UrlsController < ApplicationController
 
   def random_string 
 
-    matching_url = {}
+    # matching_url = {}
 
-    if params[:random_string]
-      matching_url = Url.find_url(params[:random_string])
-      Url.redirect_counter(random_string)
-      redirect_to matching_url.link 
-    elsif
-      matching_url = Url.find_url(params[:my_string])
-      Url.redirect_counter(random_string)
-      redirect_to matching_url.link 
-    else 
-      render file: "/Users/carinaho/Development/ritly/public/404.html"
-    end 
-    # random_string = params[:random_string] 
-    # matching_url = Url.find_url(random_string)
-
-    # if matching_url 
+    # if params[:random_string]
+    #   matching_url = Url.find_url(params[:random_string])
+    #   Url.redirect_counter(random_string)
+    #   redirect_to matching_url.link 
+    # elsif
+    #   matching_url = Url.find_url(params[:my_string])
     #   Url.redirect_counter(random_string)
     #   redirect_to matching_url.link 
     # else 
+    #   render file: "/Users/carinaho/Development/ritly/public/404.html"
+    # end 
+    random_string = params[:random_string] 
+    matching_url = Url.find_url(random_string)
+
+    if matching_url 
+       Url.redirect_counter(random_string)
+       redirect_to matching_url.link 
+     else 
       
-    # end
+     end
 
   end 
-
 
 
   def preview
@@ -79,8 +78,7 @@ class UrlsController < ApplicationController
   end
 
   # Things to do: 
-  # Preview page 
-  # Bootstrap 
-  # Regular expressions 
+  # Get go/:my_string OR :random_string working  
+  # Regular expression validation 
     
 end
