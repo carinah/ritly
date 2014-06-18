@@ -65,6 +65,8 @@ class UrlsController < ApplicationController
     if matching_url 
       # matching_url.build_visit ?? Returns undefined method 
       matching_url.visits.create
+      ip = matching_url.find_ip_address
+      ip.save
   
        # Url.redirect_counter(random_string)
        redirect_to matching_url.link 
