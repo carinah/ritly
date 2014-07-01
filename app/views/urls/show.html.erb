@@ -3,11 +3,22 @@ Link: <%= @new_url.link %></br>
 Your random code is: <%= @new_url.random_string %> </br> 
 
 Redirect counter: <%= @count %> </br> 
+<table style="width:300px" border="2px" border-space="3px">
+Dates and IP Addresses of visits: 
+  <tr>
+    <th>Dates</th>
+    <th>User IP address</th>
+  </tr>
 
-Date/times of visits: 
 <% @visits.each do |visit| %>
-<%= visit.created_at %> 
-<% end %></br>
+<tr>
+<td><%= visit.created_at %></td> 
+<td>&nbsp;&nbsp;&nbsp;&nbsp;<%= visit.ip_address %></td>
+</tr>
+<% end %>
+</table>
+
+</br>
 
 
 

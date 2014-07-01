@@ -23,6 +23,7 @@ class UrlsController < ApplicationController
 
     # For showing timestamps of each visit. 
     @visits = @new_url.visits
+
   end 
 
   def edit 
@@ -64,11 +65,9 @@ class UrlsController < ApplicationController
 
     if matching_url 
       # matching_url.build_visit ?? Returns undefined method 
-      matching_url.visits.create
-      ip = matching_url.find_ip_address
-      ip.save
-  
-       # Url.redirect_counter(random_string)
+      matching_url.visits.create(ip_address: request.remote_ip )
+        
+        Url.redirect_counter(random_string)
        redirect_to matching_url.link 
      else 
       
